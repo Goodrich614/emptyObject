@@ -4,13 +4,15 @@ const person1 = {
     height: 69
 }
 const person2 = {
-    name: 'Mary',
-    age: 53,
-    height: null
+    name: null,
+    age: '',
+    height: undefined
 }
-const isEmptyObject = (obj) => {
-    let result = ((obj.age == null || obj.name == null || obj.height == null) ? true : false);
-    return result;
-}
-console.log(`${isEmptyObject(person1)}, the object has no null values`);
-console.log(`${isEmptyObject(person2)}, the object has null values`);
+const isEmptyObject = Object.values(obj).every(value => {
+    if(value === null || value === undefined || value === '') {
+        return true;
+    }
+    return false;
+});
+
+console.log(isEmptyObject(person1));
